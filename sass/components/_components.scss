@@ -1,0 +1,20 @@
+.teddies-sheet {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgb(165, 162, 162);
+    margin: 20px;
+}
+.teddies-sheet img {
+    width: 200px;
+    height: 150px;
+    border-bottom: 2px solid purple;
+}
+.teddies-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.teddies-text h3, p {
+    margin: 10px;
+}

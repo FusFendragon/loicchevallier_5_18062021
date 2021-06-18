@@ -1,9 +1,12 @@
 @import "./components/components";
 
-.teddies-sheet img {
-	width: 100px;
-}
+
 .no-style-link {
 	text-decoration: none;
 	color: black;
+}
+
+article {
+	display: flex;
+	flex-wrap: wrap;
 }
