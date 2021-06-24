@@ -4,8 +4,8 @@ fetch("http://localhost:3000/api/teddies")
 		let output = "";
 		teddies.forEach(function (teddy) {
 			output += `
-            <a href="produit.html?id=${teddy._id}" class="no-style-link">
-            <div class="teddies-sheet">
+            <a href="product.html?id=${teddy._id}" class="no-style-link">
+            <div class="teddies">
                 <img src="${teddy.imageUrl}">
                 <div class="teddies-text">
                     <h3> ${teddy.name}</h3>
@@ -15,5 +15,9 @@ fetch("http://localhost:3000/api/teddies")
             </a>
         `;
 		});
-		document.querySelector("article").innerHTML = output;
+		document.querySelector("section").innerHTML = output;
 	});
+// Récuperer l'url et afficher la fiche produit
+const url = new URL(window.location.href);
+const urlId = url.search;
+console.log(urlId)
