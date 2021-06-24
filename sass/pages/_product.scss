@@ -1,5 +1,29 @@
 // Sheet
 
 #teddy-sheet-image {
-    width: 200px;
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+}
+#teddy-sheet {
+    display: flex;
+    border: 5px rgba(189, 49, 189, 0.733) inset;
+}
+#teddy-sheet h3 {
+    font-size: 3em;
+    margin: 20px 10px;
+}
+
+#description {
+    font-size: 1.2em;
+}
+#price {
+    font-size: 2em;
+}
+
+#teddy-custom {
+    font-size: 1.2em;
+}
+#teddy-custom select {
+    width: 100px;
 }

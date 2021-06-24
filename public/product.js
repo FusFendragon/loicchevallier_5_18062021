@@ -16,18 +16,19 @@ fetch("http://localhost:3000/api/teddies")
                     <img src="${teddy.imageUrl}" id="teddy-sheet-image" />
                     <div id="teddy-sheet-texte">
                         <h3>${teddy.name}</h3>
-                        <p>${teddy.description}</p>
-                        <p>${teddy.price / 100} €</p>
+                        <p><span id="description">${teddy.description}</span></p>
+                        <div id="teddy-custom">
+                        <form method="post" action="">
+                            <p>
+                                <label for="color">Couleur de la lentille :</label><br />
+                                <select name="color" id="color">   
+                                </select>
+                            </p>
+                        </form>
+                        </div>
+                        <p><span id="price">${teddy.price / 100} €</span></p>
                     </div>
-                    <div class"teddy-custom">
-                    <form method="post" action="">
-                        <p>
-                            <label for="color">Couleur de la lentille</label><br />
-                            <select name="color" id="color">   
-                            </select>
-                        </p>
-                    </form>
-                    </div>
+                    <button class="shop" type="submit">Ajouter au panier</button>
                 </div>
                 `;
 
@@ -41,3 +42,7 @@ fetch("http://localhost:3000/api/teddies")
 		document.querySelector("section").innerHTML = output;
 		document.querySelector("select").innerHTML = custom;
 	});
+
+    // Ajouter au panier 
+
+    // Acceder au panier
