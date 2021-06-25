@@ -75,6 +75,12 @@ fetch("http://localhost:3000/api/teddies")
                  `;
             list.appendChild(row);
         }
+
+        static deleteTeddy(el) {
+            if(el.classList.contains('delete')) {
+                el.parentElement.parentElement.remove();
+            }
+        }
     }
     document.addEventListener("DOMContentLoaded", UI.displayTeddies);
     
@@ -87,5 +93,23 @@ fetch("http://localhost:3000/api/teddies")
 
         const teddy = new Teddy(imageUrl, name, color, price)
         UI.addTeddyToList(teddy);
+        
     });
+
+    document.querySelector('#teddy-list').addEventListener('click', (e) => {
+        UI.deleteTeddy(e.target)
+    });
+
+    // Store Class
+class Store {
+    static getTeddies() {
+
+    }
+
+    static addTeddy (teddy) {
+
+    }
+
+    static removeTeddy
+}
 
