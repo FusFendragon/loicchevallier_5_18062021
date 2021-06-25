@@ -1,3 +1,12 @@
+class Teddy {
+	constructor(imageUrl, name, color, price) {
+        this.imageUrl = imageUrl;
+		this.name = name;
+		this.color = color;
+		this.price = price;
+	}
+}
+
 // Récuperer l'id dans l'URL
 const url = new URL(window.location.href);
 const urlId = url.searchParams.get("id");
@@ -12,24 +21,12 @@ fetch("http://localhost:3000/api/teddies")
 		data.forEach((teddy) => {
 			if (urlId === teddy._id) {
 				output += `
-                <div id="teddy-sheet">
                     <img src="${teddy.imageUrl}" id="teddy-sheet-image" />
                     <div id="teddy-sheet-texte">
-                        <h3>${teddy.name}</h3>
-                        <p><span id="description">${teddy.description}</span></p>
-                        <div id="teddy-custom">
-                        <form method="post" action="">
-                            <p>
-                                <label for="color">Couleur de la lentille :</label><br />
-                                <select name="color" id="color">   
-                                </select>
-                            </p>
-                        </form>
-                        </div>
-                        <p><span id="price">${teddy.price / 100} €</span></p>
+                        <h3><span id="name">${teddy.name}</span></h3>
+                        <p><span id="description">${teddy.description}</span></p>          
+                        <p><span id="price">${teddy.price / 100}€</span></p>
                     </div>
-                    <button class="shop" type="submit">Ajouter au panier</button>
-                </div>
                 `;
 
 				for (let i = 0; i < teddy.colors.length; i++) {
@@ -37,12 +34,58 @@ fetch("http://localhost:3000/api/teddies")
                 <option value=${teddy.colors[i]}>${teddy.colors[i]}</option>
                 `;
 				}
+
+
+				
 			}
 		});
-		document.querySelector("section").innerHTML = output;
+		document.querySelector("#teddy-sheet").innerHTML = output;
 		document.querySelector("select").innerHTML = custom;
 	});
 
-    // Ajouter au panier 
+    class UI {
+        static displayTeddies() {
+            const shopTeddies = [
+                {
+                    imageUrl: "fdferf",
+                    name: "Francis",
+                    color: "blue",
+                    price: "4000",
+                },
+                {
+                    imageUrl: "fdfeedez",
+                    name: "Jack",
+                    color: "red",
+                    price: "2800",
+                },
+            ];
+            const teddies = shopTeddies;
+            teddies.forEach((teddy) => UI.addTeddyToList(teddy));
+        }
+    
+        static addTeddyToList(teddy) {
+            const list = document.querySelector("#teddy-list");
+            const row = document.createElement("tr");
+    
+            row.innerHTML = `
+                     <td>${teddy.name}</td>
+                     <td>${teddy.color}</td>
+                     <td>${teddy.price}</td>
+                     <td><a href="#" class="delete">X</a></td>
+                 `;
+            list.appendChild(row);
+        }
+    }
+    document.addEventListener("DOMContentLoaded", UI.displayTeddies);
+    
+    document.querySelector("#teddy-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const imageUrl = document.querySelector('#teddy-sheet-image').src;
+        const name = document.querySelector('#name').textContent;
+        const color = document.querySelector('#color').value;
+        const price = document.querySelector('#price').textContent;;
 
-    // Acceder au panier
+        const teddy = new Teddy(imageUrl, name, color, price)
+        UI.addTeddyToList(teddy);
+    });
+
