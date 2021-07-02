@@ -17,7 +17,3 @@ fetch("http://localhost:3000/api/teddies")
 		});
 		document.querySelector("section").innerHTML = output;
 	});
-// Récuperer l'url et afficher la fiche produit
-const url = new URL(window.location.href);
-const urlId = url.search;
-console.log(urlId)

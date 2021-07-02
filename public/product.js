@@ -106,7 +106,6 @@ class Store {
 		const teddies = Store.getTeddies();
 
 		teddies.forEach((teddy, index) => {
-            console.log(index)
 			if (teddy.name === name) {
 				teddies.splice(index, 1);		
             }
