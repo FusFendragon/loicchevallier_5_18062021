@@ -97,6 +97,5 @@ function contactPost(e) {
 })
 .then((res) => res.json())
 .then((data) => {
-	// const orderId = data.orderId;
 window.open(`order.html?orderId=${data.orderId}`)
 })}

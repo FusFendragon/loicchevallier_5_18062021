@@ -1,13 +1,3 @@
-class Teddy {
-	constructor(imageUrl, name, color, price, _id) {
-		this.imageUrl = imageUrl;
-		this.name = name;
-		this.color = color;
-		this.price = price;
-		this._id = _id;
-	}
-}
-
 // Récuperer l'id dans l'URL
 const url = new URL(window.location.href);
 const urlId = url.searchParams.get("id");
@@ -35,7 +25,26 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
 		}
 		document.querySelector("#teddy-sheet").innerHTML = output;
 		document.querySelector("select").innerHTML = custom;
+
+		const imageUrl = `${teddy.imageUrl}`;
+		const name = `${teddy.name}`;
+		const color = document.querySelector("#color").value;
+		const price = `${teddy.price / 100}`;
+		const _id = `${teddy._id}`;
+		var quantity = 1;
+
+		const ted = { imageUrl, name, color, price, _id, quantity };
+		document.querySelector("#teddy-form").addEventListener("submit", (e) => {
+			e.preventDefault();
+
+			// Add Teddy to UI
+			UI.addTeddyToList(ted);
+
+			// Add Teddy to Store
+			Store.addTeddy(ted);
+		});
 	});
+
 
 class UI {
 	static displayTeddies() {
@@ -44,16 +53,22 @@ class UI {
 	}
 
 	static addTeddyToList(teddy) {
-		const list = document.querySelector("#teddy-list");
-		const row = document.createElement("tr");
+		// if (teddy.name = "name") {
 
-		row.innerHTML = `
-                     <td>${teddy.name}</td>
-                     <td>${teddy.color}</td>
-                     <td>${teddy.price}</td>
-                     <td><a class="delete">X</a></td>
-                 `;
-		list.appendChild(row);
+		// } else {
+			const list = document.querySelector("#teddy-list");
+			const row = document.createElement("tr");
+			var quantity = 1;
+
+			row.innerHTML = `
+						 <td><span class="teddy-name">${teddy.name}</span></td>
+						 <td>${teddy.color}</td>
+						 <td>${teddy.price}</td>
+						 <td>${quantity}</td>
+						 <td><a class="delete">X</a></td>
+					 `;
+			list.appendChild(row);
+		// }
 	}
 
 	static deleteTeddy(el) {
@@ -64,26 +79,9 @@ class UI {
 }
 document.addEventListener("DOMContentLoaded", UI.displayTeddies);
 
-document.querySelector("#teddy-form").addEventListener("submit", (e) => {
-	e.preventDefault();
-	const imageUrl = document.querySelector("#teddy-sheet-image").src;
-	const name = document.querySelector("#name").textContent;
-	const color = document.querySelector("#color").value;
-	const price = document.querySelector("#price").textContent;
-	const _id = document.querySelector("#id").textContent;
-
-	const teddy = new Teddy(imageUrl, name, color, price, _id);
-
-	// Add Teddy to UI
-	UI.addTeddyToList(teddy);
-
-	// Add Teddy to Store
-	Store.addTeddy(teddy);
-});
-
 document.querySelector("#teddy-list").addEventListener("click", (e) => {
 	UI.deleteTeddy(e.target);
-    Store.removeTeddy(e.target.parentElement.parentElement.childNodes[1].textContent)
+	Store.removeTeddy(e.target.parentElement.parentElement.childNodes[1].textContent);
 });
 
 // Store Class
@@ -110,8 +108,8 @@ class Store {
 
 		teddies.forEach((teddy, index) => {
 			if (teddy.name === name) {
-				teddies.splice(index, 1);		
-            }
+				teddies.splice(index, 1);
+			}
 		});
 
 		localStorage.setItem("teddies", JSON.stringify(teddies));
