@@ -1,0 +1,19 @@
+GET http://localhost:3000/api/teddies
+###
+GET http://localhost:3000/api/teddies/5beaa8bf1c9d440000a57d94
+###
+POST http://localhost:3000/api/teddies/order
+Content-Type: application/json
+
+{
+    "contact": {
+        "firstName":"Loic",
+        "lastName":"Chev",
+        "address":"23b",
+        "city":"mars",
+        "email":"email"
+    },
+    "products": [
+        "5beaa8bf1c9d440000a57d94"
+    ]
+}

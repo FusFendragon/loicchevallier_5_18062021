@@ -63,3 +63,40 @@ class Store {
 		localStorage.setItem("teddies", JSON.stringify(teddies));
 	}
 }
+
+// Contact 
+
+document.getElementById("contact-form").addEventListener("submit", contactPost);
+
+
+function contactPost(e) {
+	e.preventDefault();
+
+	let firstName = document.getElementById("firstName").value;
+	let lastName = document.getElementById("lastName").value;
+	let address = document.getElementById("address").value;
+	let city = document.getElementById("city").value;
+	let email = document.getElementById("email").value;
+
+    const contact = {firstName, lastName, address, city, email};
+    const cart = JSON.parse(localStorage.getItem("teddies"));
+    const products = [];
+
+    cart.forEach(element => {
+        products.push(element._id)
+    });
+
+    fetch('http://localhost:3000/api/teddies/order', {
+    method:'POST',
+    headers: { 
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json' 
+        },
+    body:JSON.stringify({contact, products})
+
+})
+.then((res) => res.json())
+.then((data) => {
+	// const orderId = data.orderId;
+window.open(`order.html?orderId=${data.orderId}`)
+})}

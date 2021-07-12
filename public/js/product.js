@@ -1,9 +1,10 @@
 class Teddy {
-	constructor(imageUrl, name, color, price) {
+	constructor(imageUrl, name, color, price, _id) {
 		this.imageUrl = imageUrl;
 		this.name = name;
 		this.color = color;
 		this.price = price;
+		this._id = _id;
 	}
 }
 
@@ -23,6 +24,7 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
                 <h3><span id="name">${teddy.name}</span></h3>
                 <p><span id="description">${teddy.description}</span></p>          
                 <p><span id="price">${teddy.price / 100}€</span></p>
+				<p><span id="id">${teddy._id}</span></p>
             </div>
         `;
 
@@ -68,8 +70,9 @@ document.querySelector("#teddy-form").addEventListener("submit", (e) => {
 	const name = document.querySelector("#name").textContent;
 	const color = document.querySelector("#color").value;
 	const price = document.querySelector("#price").textContent;
+	const _id = document.querySelector("#id").textContent;
 
-	const teddy = new Teddy(imageUrl, name, color, price);
+	const teddy = new Teddy(imageUrl, name, color, price, _id);
 
 	// Add Teddy to UI
 	UI.addTeddyToList(teddy);
