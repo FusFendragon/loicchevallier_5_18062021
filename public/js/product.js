@@ -115,3 +115,13 @@ class Store {
 		localStorage.setItem("teddies", JSON.stringify(teddies));
 	}
 }
+
+const teddies = Store.getTeddies();
+teddies.forEach((teddyCart) => {
+	if (teddyCart.name === teddy.name && teddyCart.color === teddy.color) {
+		teddyCart.quantity++
+	}
+	else {
+		teddies.push(teddy);
+		localStorage.setItem("teddies", JSON.stringify(teddies));
+	}
