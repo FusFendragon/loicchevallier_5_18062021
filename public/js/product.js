@@ -26,38 +26,36 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
 		document.querySelector("#teddy-sheet").innerHTML = output;
 		document.querySelector("select").innerHTML = custom;
 
-		const imageUrl = `${teddy.imageUrl}`;
-		const name = `${teddy.name}`;
-		const color = document.querySelector("#color").value;
-		const price = `${teddy.price / 100}`;
-		const _id = `${teddy._id}`;
-		var quantity = 1;
-
-		const ted = { imageUrl, name, color, price, _id, quantity };
 		document.querySelector("#teddy-form").addEventListener("submit", (e) => {
 			e.preventDefault();
 
-			// // Add Teddy to UI
-			// UI.addTeddyToList(ted);
+			const imageUrl = teddy.imageUrl;
+			const name = teddy.name;
+			const color = document.querySelector("#color").value;
+			const price = teddy.price / 100;
+			const _id = teddy._id;
+			const quantity = 1;
+
+			const ted = { imageUrl, name, color, price, _id, quantity };
 
 			// Add Teddy to Store
 			const teddies = Store.getTeddies();
-			var needAdd = 0;
-			teddies.forEach((teddies) => {
-				if (teddy.name === teddies.name) {
-					teddies.quantity++;
-					needAdd++
+			var needAdd = true;
+			teddies.forEach((teddyInCart, index) => {
+				if (ted.name === teddyInCart.name && ted.color === teddyInCart.color) {
+					teddies[index].quantity++;
+					console.log(index);
+					needAdd = false;
+					localStorage.setItem("teddies", JSON.stringify(teddies));
+					UI.refreshQuantity(index, teddies[index].quantity);
 				}
-				if ((needAdd > 0)) {
-					console.log("la quantité a été changé");				
-					Store.removeTeddy(teddies.name)
-					Store.addTeddy(teddies);
-				} 
 			});
-			console.log(needAdd)
-			if (needAdd === 0) {
-				console.log("un autre ours +")
+			console.log(needAdd);
+			if (needAdd) {
+				console.log("un autre ours +");
 				Store.addTeddy(ted);
+				// // Add Teddy to UI
+				UI.addTeddyToList(ted);
 			}
 		});
 	});
@@ -73,12 +71,12 @@ class UI {
 		const row = document.createElement("tr");
 
 		row.innerHTML = `
-						 <td><span class="teddy-name">${teddy.name}</span></td>
-						 <td>${teddy.color}</td>
-						 <td>${teddy.price}€</td>
-						 <td>${teddy.quantity}</td>
-						 <td><a class="delete">X</a></td>
-					 `;
+			<td><span class="teddy-name">${teddy.name}</span></td>
+			<td>${teddy.color}</td>
+			<td>${teddy.price}€</td>
+			<td class="quantity">${teddy.quantity}</td>
+			<td><a class="delete">X</a></td>
+		`;
 		list.appendChild(row);
 	}
 
@@ -86,6 +84,13 @@ class UI {
 		if (el.classList.contains("delete")) {
 			el.parentElement.parentElement.remove();
 		}
+	}
+
+	static refreshQuantity(index, quantity) {
+		const row = document.querySelectorAll("tr")[index + 1];
+		console.log(row);
+		const element = row.querySelector(".quantity");
+		element.innerHTML = quantity;
 	}
 }
 document.addEventListener("DOMContentLoaded", UI.displayTeddies);

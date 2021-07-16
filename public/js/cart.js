@@ -13,6 +13,7 @@ class UI {
                      <td>${teddy.name}</td>
                      <td>${teddy.color}</td>
                      <td>${teddy.price}</td>
+					 <td class="quantity">${teddy.quantity}</td>
                      <td><a class="delete">X</a></td>
                  `;
 		list.appendChild(row);
