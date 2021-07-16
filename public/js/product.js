@@ -37,14 +37,30 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
 		document.querySelector("#teddy-form").addEventListener("submit", (e) => {
 			e.preventDefault();
 
-			// Add Teddy to UI
-			UI.addTeddyToList(ted);
+			// // Add Teddy to UI
+			// UI.addTeddyToList(ted);
 
 			// Add Teddy to Store
-			Store.addTeddy(ted);
+			const teddies = Store.getTeddies();
+			var needAdd = 0;
+			teddies.forEach((teddies) => {
+				if (teddy.name === teddies.name) {
+					teddies.quantity++;
+					needAdd++
+				}
+				if ((needAdd > 0)) {
+					console.log("la quantité a été changé");				
+					Store.removeTeddy(teddies.name)
+					Store.addTeddy(teddies);
+				} 
+			});
+			console.log(needAdd)
+			if (needAdd === 0) {
+				console.log("un autre ours +")
+				Store.addTeddy(ted);
+			}
 		});
 	});
-
 
 class UI {
 	static displayTeddies() {
@@ -53,22 +69,17 @@ class UI {
 	}
 
 	static addTeddyToList(teddy) {
-		// if (teddy.name = "name") {
+		const list = document.querySelector("#teddy-list");
+		const row = document.createElement("tr");
 
-		// } else {
-			const list = document.querySelector("#teddy-list");
-			const row = document.createElement("tr");
-			var quantity = 1;
-
-			row.innerHTML = `
+		row.innerHTML = `
 						 <td><span class="teddy-name">${teddy.name}</span></td>
 						 <td>${teddy.color}</td>
-						 <td>${teddy.price}</td>
-						 <td>${quantity}</td>
+						 <td>${teddy.price}€</td>
+						 <td>${teddy.quantity}</td>
 						 <td><a class="delete">X</a></td>
 					 `;
-			list.appendChild(row);
-		// }
+		list.appendChild(row);
 	}
 
 	static deleteTeddy(el) {
@@ -98,9 +109,9 @@ class Store {
 	}
 
 	static addTeddy(teddy) {
-		const teddies = Store.getTeddies();
-		teddies.push(teddy);
-		localStorage.setItem("teddies", JSON.stringify(teddies));
+		const teddiesAdd = Store.getTeddies();
+		teddiesAdd.push(teddy);
+		localStorage.setItem("teddies", JSON.stringify(teddiesAdd));
 	}
 
 	static removeTeddy(name) {
@@ -115,13 +126,3 @@ class Store {
 		localStorage.setItem("teddies", JSON.stringify(teddies));
 	}
 }
-
-const teddies = Store.getTeddies();
-teddies.forEach((teddyCart) => {
-	if (teddyCart.name === teddy.name && teddyCart.color === teddy.color) {
-		teddyCart.quantity++
-	}
-	else {
-		teddies.push(teddy);
-		localStorage.setItem("teddies", JSON.stringify(teddies));
-	}
