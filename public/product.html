@@ -6,39 +6,48 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Orinoco</title>
 		<link rel="stylesheet" href="css/style.min.css" />
+		<script src="https://kit.fontawesome.com/f9ccfde1c2.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<section>
-			<div id="teddy-sheet">
-			</div>
-			<div id="teddy-custom">
-				<form method="post" action="" id="teddy-form">
-					<p>
-						<label for="color">Couleur de la lentille :</label><br />
-						<select name="color" id="color"></select>
-					</p>
-					<input id="shop" type="submit" value="Ajouter au panier">
-				</form>
-			</div>
-		</section>
-		<section>
-			<table class="table-cart">
-			  <thead>
-				<tr>
-				  <th>Nom produit</th>
-				  <th>Couleur</th>
-				  <th>Prix</th>
-				  <th>Quantité</th>
-				  <th></th>
-				</tr>
-			  </thead>
-			  <tbody id="teddy-list"></tbody>
-			</table>
+		<div id="bloc-page">
+			<header>
+				<a href="index.html" id="logo"
+					><h1><img src="img/logo.png" alt="Orinoco" /></h1
+				></a>
+				<a href="cart.html" class="cart"><i class="fas fa-shopping-cart"></i></a>
+			</header>
+			<section>
+				<div id="teddy-sheet">
+					<div id="teddy-card"></div>
+					<div id="teddy-custom">
+						<form method="post" action="" id="teddy-form">
+							<p>
+								<label for="color">Couleur de la lentille :</label><br />
+								<select name="color" id="color"></select>
+							</p>
+							<input id="shop" type="submit" value="Ajouter au panier" />
+						</form>
+					</div>
+				</div>
+			</section>
+			<section>
+				<table class="table-cart">
+					<thead>
+						<tr>
+							<th>Nom produit</th>
+							<th>Couleur</th>
+							<th>Prix</th>
+							<th>Quantité</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="teddy-list"></tbody>
+				</table>
+				<a href="cart.html"> Voir le panier</a>
+				<p></p>
+				<a href="index.html"> acceuil</a>
+			</section>
 		</div>
-		<a href="cart.html"> Voir le panier</a>
-		<p></p>
-		<a href="index.html"> acceuil</a>
-  </section>
 		<script src="js/product.js"></script>
 	</body>
 </html>

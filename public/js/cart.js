@@ -29,9 +29,7 @@ class UI {
 		const teddies = Store.getTeddies();
 		let totalPrice = 0;
 		teddies.forEach((teddy) => {
-			for (let i = 0; i < teddy.quantity; i++) {
-				totalPrice += teddy.price;
-			}
+			totalPrice += teddy.price * teddy.quantity;
 		});
 		document.querySelector(".total").innerHTML = `Prix Total: ${totalPrice}€`;
 	}
@@ -57,22 +55,7 @@ class Store {
 		return teddies;
 	}
 
-	static sendTeddyToServer() {
-		const teddies = Store.getTeddies();
-		let ted;
-		teddies.forEach((teddy, index) => {
-			for (let i = 0; i < teddy.quantity; i++) {
-				ted = teddy;
-				teddies.push(ted);
-			}
-			delete teddies[index];
-			delete ted.quantity;
-		});
-		let teddiesToSend = teddies.flat();
-		localStorage.setItem("teddies", JSON.stringify(teddiesToSend));
-	}
-
-	static sendTeddyToServer2() {
+	static getTeddyIds() {
 		const teddies = Store.getTeddies();
 		let productsIds = [];
 		teddies.forEach((teddy) => {
@@ -80,7 +63,7 @@ class Store {
 				productsIds.push(teddy._id);
 			}
 		});
-		localStorage.setItem("teddies", JSON.stringify(productsIds));
+		return productsIds;
 	}
 
 	static removeTeddy(name, color) {
@@ -109,16 +92,11 @@ function contactPost(e) {
 	let city = document.getElementById("city").value;
 	let email = document.getElementById("email").value;
 
-	// Version 1
-
 	const contact = { firstName, lastName, address, city, email };
-	Store.sendTeddyToServer();
-	const cart = JSON.parse(localStorage.getItem("teddies"));
+
+	const products = Store.getTeddyIds();
 	localStorage.clear();
-	const products = [];
-	cart.forEach((element) => {
-		products.push(element._id);
-	});
+
 	fetch("http://localhost:3000/api/teddies/order", {
 		method: "POST",
 		headers: {
@@ -129,30 +107,6 @@ function contactPost(e) {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			console.log(data);
 			window.open(`order.html?orderId=${data.orderId}`);
 		});
-
-	// VERSION 2
-
-	// const contact = { firstName, lastName, address, city, email };
-
-	// Store.sendTeddyToServer2();
-
-	// const products = JSON.parse(localStorage.getItem("teddies"));
-	// localStorage.clear();
-	// console.log(products);
-
-	// fetch("http://localhost:3000/api/teddies/order", {
-	// 	method: "POST",
-	// 	headers: {
-	// 		Accept: "application/json",
-	// 		"Content-Type": "application/json",
-	// 	},
-	// body: JSON.stringify({ contact, products }),
-	// })
-	// .then((res) => res.json())
-	// .then((data) => {
-	// window.open(`order.html?orderId=${data.orderId}`);
-	// });
 }

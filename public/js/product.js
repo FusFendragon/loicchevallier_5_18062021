@@ -8,13 +8,12 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
 	.then((teddy) => {
 		let output = "";
 		let custom = "";
-		output += `
+		output = `
             <img src="${teddy.imageUrl}" id="teddy-sheet-image" />
             <div id="teddy-sheet-texte">
                 <h3><span id="name">${teddy.name}</span></h3>
                 <p><span id="description">${teddy.description}</span></p>          
                 <p><span id="price">${teddy.price / 100}€</span></p>
-				<p><span id="id">${teddy._id}</span></p>
             </div>
         `;
 
@@ -23,7 +22,7 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
                 <option value="${teddy.colors[i]}">${teddy.colors[i]}</option>
                 `;
 		}
-		document.querySelector("#teddy-sheet").innerHTML = output;
+		document.querySelector("#teddy-card").innerHTML += output;
 		document.querySelector("select").innerHTML = custom;
 
 		document.querySelector("#teddy-form").addEventListener("submit", (e) => {

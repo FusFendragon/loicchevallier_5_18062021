@@ -9,7 +9,10 @@
     display: flex;
     border: 5px rgba(189, 49, 189, 0.733) inset;
 }
-#teddy-sheet h3 {
+#teddy-card {
+    display: flex;
+}
+#teddy-card h3 {
     font-size: 3em;
     margin: 20px 10px;
 }
