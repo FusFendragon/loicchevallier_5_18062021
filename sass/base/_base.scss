@@ -12,5 +12,12 @@
 }
 
 body {
-    font-family: 'roboto';
+	background-color: #f3e9f1;
+	font-family: 'roboto';
+}
+#bloc-page {
+	margin: 0% 5%;
+}
+a {
+	@include link-no-style;
 }

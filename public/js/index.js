@@ -4,14 +4,12 @@ fetch("http://localhost:3000/api/teddies")
 		let output = "";
 		teddies.forEach(function (teddy) {
 			output += `
-            <a href="product.html?id=${teddy._id}" class="no-style-link">
-            <div class="teddies">
+            <a href="product.html?id=${teddy._id}" class="teddies">
                 <img src="${teddy.imageUrl}">
                 <div class="teddies-text">
                     <h3> ${teddy.name}</h3>
                     <p>${teddy.price / 100} €</p>
                 </div>
-            </div>
             </a>
         `;
 		});

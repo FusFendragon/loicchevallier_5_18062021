@@ -1,0 +1,31 @@
+// HEADER
+header {
+	display: flex;
+	justify-content: space-between;
+	border: 3px inset $primary-color;
+}
+
+header .cart {
+	font-size: 40px;
+	align-self: center;
+	margin-right: 30px;
+}
+.fas {
+	color: $primary-color;
+}
+#logo {
+	width: 40%;
+}
+
+#logo h1 {
+	margin: 0px;
+}
+
+#logo img{
+    width: 100%;
+	margin: 0% 10% ;
+	align-self: center;
+}
+
+// FOOTER
+
