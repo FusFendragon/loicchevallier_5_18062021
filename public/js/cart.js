@@ -28,10 +28,10 @@ class UI {
 	static displayTotalPrice() {
 		const teddies = Store.getTeddies();
 		let totalPrice = 0;
-		teddies.forEach(teddy => {
-		for (let i = 0; i < teddy.quantity; i++) {
-			totalPrice += teddy.price;
-		}
+		teddies.forEach((teddy) => {
+			for (let i = 0; i < teddy.quantity; i++) {
+				totalPrice += teddy.price;
+			}
 		});
 		document.querySelector(".total").innerHTML = `Prix Total: ${totalPrice}€`;
 	}
@@ -59,19 +59,28 @@ class Store {
 
 	static sendTeddyToServer() {
 		const teddies = Store.getTeddies();
-		let ted = {};
+		let ted;
 		teddies.forEach((teddy, index) => {
 			for (let i = 0; i < teddy.quantity; i++) {
-				ted = teddy
-				teddies.push(ted)
+				ted = teddy;
+				teddies.push(ted);
 			}
-			delete teddies[index]
-			delete ted.quantity
-			console.log(teddies)
+			delete teddies[index];
+			delete ted.quantity;
 		});
 		let teddiesToSend = teddies.flat();
-		console.log(teddiesToSend);
 		localStorage.setItem("teddies", JSON.stringify(teddiesToSend));
+	}
+
+	static sendTeddyToServer2() {
+		const teddies = Store.getTeddies();
+		let productsIds = [];
+		teddies.forEach((teddy) => {
+			for (let i = 0; i < teddy.quantity; i++) {
+				productsIds.push(teddy._id);
+			}
+		});
+		localStorage.setItem("teddies", JSON.stringify(productsIds));
 	}
 
 	static removeTeddy(name, color) {
@@ -87,10 +96,9 @@ class Store {
 	}
 }
 
-// Contact 
+// Contact
 
 document.getElementById("contact-form").addEventListener("submit", contactPost);
-
 
 function contactPost(e) {
 	e.preventDefault();
@@ -101,26 +109,50 @@ function contactPost(e) {
 	let city = document.getElementById("city").value;
 	let email = document.getElementById("email").value;
 
-    const contact = {firstName, lastName, address, city, email};
-	Store.sendTeddyToServer()
-    const cart = JSON.parse(localStorage.getItem("teddies"));
+	// Version 1
+
+	const contact = { firstName, lastName, address, city, email };
+	Store.sendTeddyToServer();
+	const cart = JSON.parse(localStorage.getItem("teddies"));
 	localStorage.clear();
-    const products = [];
+	const products = [];
+	cart.forEach((element) => {
+		products.push(element._id);
+	});
+	fetch("http://localhost:3000/api/teddies/order", {
+		method: "POST",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ contact, products }),
+	})
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(data);
+			window.open(`order.html?orderId=${data.orderId}`);
+		});
 
-    cart.forEach(element => {
-        products.push(element._id)
-    });
-	console.log(products);
-    fetch('http://localhost:3000/api/teddies/order', {
-    method:'POST',
-    headers: { 
-        'Accept': 'application/json', 
-        'Content-Type': 'application/json' 
-        },
-    body:JSON.stringify({contact, products})
+	// VERSION 2
 
-})
-.then((res) => res.json())
-.then((data) => {
-window.open(`order.html?orderId=${data.orderId}`)
-})}
+	// const contact = { firstName, lastName, address, city, email };
+
+	// Store.sendTeddyToServer2();
+
+	// const products = JSON.parse(localStorage.getItem("teddies"));
+	// localStorage.clear();
+	// console.log(products);
+
+	// fetch("http://localhost:3000/api/teddies/order", {
+	// 	method: "POST",
+	// 	headers: {
+	// 		Accept: "application/json",
+	// 		"Content-Type": "application/json",
+	// 	},
+	// body: JSON.stringify({ contact, products }),
+	// })
+	// .then((res) => res.json())
+	// .then((data) => {
+	// window.open(`order.html?orderId=${data.orderId}`);
+	// });
+}
