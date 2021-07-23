@@ -2,13 +2,44 @@
 @import "./components/components";
 @import "./pages/product";
 @import "./pages/cart";
+@import "./pages/index";
+
+body {
+	background-color: #f3e9f1;
+}
+#bloc-page {
+	width: 1000px;
+	margin: auto;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	border: 3px inset #935df2;
+}
+
+header .cart {
+	font-size: 40px;
+	align-self: center;
+	margin-right: 30px;
+}
+#logo {
+	width: 40%;
+}
+
+#logo h1 {
+	margin: 0px;
+}
+
+#logo img{
+    width: 100%;
+	margin: 0% 10% ;
+	align-self: center;
+}
+
 
 .no-style-link {
 	text-decoration: none;
 	color: black;
 }
 
-section {
-	display: flex;
-	flex-wrap: wrap;
-}
+

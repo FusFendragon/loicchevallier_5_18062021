@@ -1,18 +1,22 @@
+// Teddies
 .teddies {
     display: flex;
     flex-direction: column;
-    border: 3px solid rgb(165, 162, 162);
+    border: 3px solid #935df2;
     margin: 20px;
 }
 .teddies img {
     width: 200px;
     height: 150px;
-    border-bottom: 2px solid purple;
+    border-bottom: 2px solid #935df2;
 }
 .teddies-text {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-image: linear-gradient(to right, #d88330, #f55f4d, #8f5bfe);
+    color: white;
+    text-shadow: black 1px 1px, black -1px 1px, black -1px -1px, black 1px -1px;
 }
 
 .teddies-text h3, p {
