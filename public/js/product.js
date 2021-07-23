@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", UI.displayTeddies);
 
 document.querySelector("#teddy-list").addEventListener("click", (e) => {
 	UI.deleteTeddy(e.target);
-	Store.removeTeddy(e.target.parentElement.parentElement.childNodes[1].textContent);
+	Store.removeTeddy(e.target.parentElement.parentElement.childNodes[1].textContent, e.target.parentElement.parentElement.childNodes[3].textContent);
 });
 
 // Store Class
@@ -119,11 +119,11 @@ class Store {
 		localStorage.setItem("teddies", JSON.stringify(teddiesAdd));
 	}
 
-	static removeTeddy(name) {
+	static removeTeddy(name, color) {
 		const teddies = Store.getTeddies();
 
 		teddies.forEach((teddy, index) => {
-			if (teddy.name === name) {
+			if (teddy.name === name && teddy.color === color) {
 				teddies.splice(index, 1);
 			}
 		});
