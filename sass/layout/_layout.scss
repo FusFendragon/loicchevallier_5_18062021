@@ -5,11 +5,6 @@ header {
 	border: 3px inset $primary-color;
 }
 
-header .cart {
-	font-size: 40px;
-	align-self: center;
-	margin-right: 30px;
-}
 .fas {
 	color: $primary-color;
 }
@@ -21,11 +16,68 @@ header .cart {
 	margin: 0px;
 }
 
-#logo img{
-    width: 100%;
-	margin: 0% 10% ;
+#logo img {
+	width: 100%;
+	margin: 0% 10%;
 	align-self: center;
 }
 
-// FOOTER
+// HEADER DROPDOWN
 
+header #dropdown {
+	align-self: center;
+	margin-right: 5%;
+}
+
+header .delete {
+	display: none;
+}
+
+header table {
+	border: 3px solid black;
+	border-collapse: collapse;
+}
+
+header tbody {
+	border: 3px solid black;
+}
+
+header td {
+	text-align: center;
+	width: 50%;
+	padding: 5px;
+}
+
+header th {
+	width: 50%;
+	padding: 5px;
+	text-align: center;
+	border: 3px solid black;
+}
+
+#dropdown .cart {
+	font-size: 4em;
+}
+
+.dropdown-cart {
+	position: absolute;
+	display: none;
+	background-color: white;
+	border: 2px solid black;
+	right: 50px;
+}
+
+#triangle {
+	position: absolute;
+	top: -10px;
+	right: calc();
+	z-index: -1;
+	border-right: 31px solid transparent;
+	border-bottom: 54px solid black;
+	border-left: 31px solid transparent;
+}
+
+#dropdown:hover .dropdown-cart {
+	display: block;
+}
+// FOOTER

@@ -14,7 +14,23 @@
 				<a href="index.html" id="logo"
 					><h1><img src="img/logo.png" alt="Orinoco" /></h1
 				></a>
-				<a href="cart.html" class="cart"><i class="fas fa-shopping-cart"></i></a>
+				<div id="dropdown">
+					<a href="cart.html" class="cart"><i class="fas fa-shopping-cart"></i></a>
+					<div class="dropdown-cart">
+						<table class="table-cart">
+							<span id="triangle"></span>
+							<thead>
+								<tr>
+									<th>Nom produit</th>
+									<th>Couleur</th>
+									<th>Prix</th>
+									<th>Quantité</th>
+								</tr>
+							</thead>
+							<tbody id="teddy-list"></tbody>
+						</table>
+					</div>
+				</div>
 			</header>
 			<section>
 				<div id="teddy-sheet">
@@ -31,18 +47,6 @@
 				</div>
 			</section>
 			<section>
-				<table class="table-cart">
-					<thead>
-						<tr>
-							<th>Nom produit</th>
-							<th>Couleur</th>
-							<th>Prix</th>
-							<th>Quantité</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody id="teddy-list"></tbody>
-				</table>
 				<a href="cart.html"> Voir le panier</a>
 				<p></p>
 				<a href="index.html"> acceuil</a>
