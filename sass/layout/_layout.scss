@@ -23,7 +23,12 @@ header {
 	margin: 0% 10%;
 	align-self: center;
 }
-
+#cart-logo {
+	margin-right: 5%;
+}
+#cart-logo img{
+	width: 400px;
+}
 // HEADER DROPDOWN
 
 header #dropdown {
@@ -85,4 +90,30 @@ header th {
 #dropdown:hover .dropdown-cart {
 	display: block;
 }
+
+// Return btn 
+
+#return-btn {
+	position: relative;
+	width: 200px;
+	margin: 50px;
+
+}
+#return-btn i {
+	position: absolute;
+	font-size: 5em;
+	left: 60px;
+	top: 25px;
+	color: $primary-color;
+}
+#return-btn input {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 1%;
+}
+#return-btn:hover i{
+	color: darken($color: $primary-color, $amount: 10);
+}
+
 // FOOTER

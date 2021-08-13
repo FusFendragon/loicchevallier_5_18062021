@@ -3,8 +3,12 @@
         opacity: 80%;
         font-size: 1em;
     }
-    100% {
+    50% {
         opacity: 100%;
         font-size: 1.1em;
+    }
+    100% {
+        opacity: 80%;
+        font-size: 1em;
     }
 }

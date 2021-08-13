@@ -19,12 +19,6 @@ class UI {
 		list.appendChild(row);
 	}
 
-	static deleteTeddy(el) {
-		if (el.classList.contains("delete")) {
-			el.parentElement.parentElement.remove();
-		}
-	}
-
 	static displayTotalPrice() {
 		const teddies = Store.getTeddies();
 		let totalPrice = 0;
@@ -38,8 +32,9 @@ document.addEventListener("DOMContentLoaded", UI.displayTeddies);
 document.addEventListener("DOMContentLoaded", UI.displayTotalPrice);
 
 document.querySelector("#teddy-list").addEventListener("click", (e) => {
-	UI.deleteTeddy(e.target);
+	
 	Store.removeTeddy(e.target.parentElement.parentElement.childNodes[3].textContent, e.target.parentElement.parentElement.childNodes[5].textContent);
+	location.reload();
 });
 
 // Store Class
@@ -109,4 +104,11 @@ function contactPost(e) {
 		.then((data) => {
 			window.open(`order.html?orderId=${data.orderId}`);
 		});
+}
+
+if (Store.getTeddies().length === 0) {
+    // Hide table and form
+	document.getElementById("table-form").classList.add("hidden")
+} else {
+	document.querySelector(".product-need").classList.add("hidden")
 }

@@ -7,6 +7,7 @@ if (storage.length === 0) {
     document.querySelector(".alert-circle").classList.add("hidden")
     //Hide Table
 	document.querySelector(".table-cart").classList.add("hidden")
+
 } else {
     //Hide Alerte
     document.querySelector(".product-need").classList.add("hidden")

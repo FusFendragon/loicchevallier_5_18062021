@@ -8,11 +8,36 @@
 		<link rel="stylesheet" href="css/style.min.css" />
 	</head>
 	<body>
-        <section>
-            <div id="valid">
-                <p>Votre panier à été validé, voici votre numéro de commande : <span id="orderId"></span></p>
-            </div>
-        </section>
+		<header>
+			<a href="index.html" id="logo"
+				><h1><img src="img/logo.png" alt="Orinoco" /></h1
+			></a>
+			<div id="dropdown">
+				<i class="fas fa-circle alert-circle"></i>
+				<a href="cart.html" class="cart"><i class="fas fa-shopping-cart"></i></a>
+				<div class="dropdown-cart">
+					<table class="table-cart">
+						<span class="product-need">Veuillez Ajouter des produits à votre panier !</span>
+						<thead>
+							<tr>
+								<th>Nom produit</th>
+								<th>Couleur</th>
+								<th>Prix</th>
+								<th>Quantité</th>
+							</tr>
+						</thead>
+						<tbody id="teddy-list"></tbody>
+					</table>
+				</div>
+			</div>
+		</header>
+
+		<section>
+			<div id="valid">
+				<p>Votre panier à été validé, voici votre numéro de commande : <span id="orderId"></span></p>
+			</div>
+		</section>
 		<script src="js/order.js"></script>
+		<script src="js/empty-cart.js"></script>
 	</body>
 </html>
