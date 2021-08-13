@@ -11,25 +11,31 @@
 	<body id="index">
 		<div id="bloc-page">
 			<header>
-				<a href="index.html" id="logo" ><h1><img src="img/logo.png" alt="Orinoco" /></h1></a>
+				<a href="index.html" id="logo"
+					><h1><img src="img/logo.png" alt="Orinoco" /></h1
+				></a>
 				<div id="dropdown">
+					<i class="fas fa-circle alert-circle"></i>
 					<a href="cart.html" class="cart"><i class="fas fa-shopping-cart"></i></a>
-					<table class="table-cart dropdown-cart">
-						<thead>
-							<tr>
-								<th>Nom produit</th>
-								<th>Couleur</th>
-								<th>Prix</th>
-								<th>Quantité</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody id="teddy-list"></tbody>
-					</table>
+					<div class="dropdown-cart">
+						<table class="table-cart">
+							<span class="product-need">Veuillez Ajouter des produits à votre panier !</span>
+							<thead>
+								<tr>
+									<th>Nom produit</th>
+									<th>Couleur</th>
+									<th>Prix</th>
+									<th>Quantité</th>
+								</tr>
+							</thead>
+							<tbody id="teddy-list"></tbody>
+						</table>
+					</div>
 				</div>
 			</header>
 			<section></section>
 		</div>
 		<script src="js/index.js"></script>
+		<script src="js/empty-cart.js"></script>
 	</body>
 </html>

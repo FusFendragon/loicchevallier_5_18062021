@@ -38,26 +38,11 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
 			const ted = { imageUrl, name, color, price, _id, quantity };
 
 			// Add Teddy to Store
-			const teddies = Store.getTeddies();
-			var needAdd = true;
-			teddies.forEach((teddyInCart, index) => {
-				if (ted.name === teddyInCart.name && ted.color === teddyInCart.color) {
-					teddies[index].quantity++;
-					console.log(index);
-					needAdd = false;
-					localStorage.setItem("teddies", JSON.stringify(teddies));
-					UI.refreshQuantity(index, teddies[index].quantity);
-				}
-			});
-			console.log(needAdd);
-			if (needAdd) {
-				console.log("un autre ours +");
-				Store.addTeddy(ted);
-				// // Add Teddy to UI
-				UI.addTeddyToList(ted);
-			}
+			Store.addTeddy(ted);
 		});
 	});
+
+// UI CLASS
 
 class UI {
 	static displayTeddies() {
@@ -86,7 +71,6 @@ class UI {
 
 	static refreshQuantity(index, quantity) {
 		const row = document.querySelectorAll("tr")[index + 1];
-		console.log(row);
 		const element = row.querySelector(".quantity");
 		element.innerHTML = quantity;
 	}
@@ -112,9 +96,22 @@ class Store {
 	}
 
 	static addTeddy(teddy) {
-		const teddiesAdd = Store.getTeddies();
-		teddiesAdd.push(teddy);
-		localStorage.setItem("teddies", JSON.stringify(teddiesAdd));
+		const teddies = Store.getTeddies();
+		var needAdd = true;
+		teddies.forEach((teddyInCart, index) => {
+			if (teddy.name === teddyInCart.name && teddy.color === teddyInCart.color) {
+				teddies[index].quantity++;
+				localStorage.setItem("teddies", JSON.stringify(teddies));
+				UI.refreshQuantity(index, teddies[index].quantity);
+				needAdd = false;
+			}
+		});
+		if (needAdd) {
+			teddies.push(teddy);
+			localStorage.setItem("teddies", JSON.stringify(teddies));
+			// // Add Teddy to UI
+			UI.addTeddyToList(teddy);
+		}
 	}
 
 	static removeTeddy(name, color) {

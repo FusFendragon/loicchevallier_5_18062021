@@ -8,6 +8,8 @@ header {
 .fas {
 	color: $primary-color;
 }
+
+
 #logo {
 	width: 40%;
 }
@@ -25,14 +27,17 @@ header {
 // HEADER DROPDOWN
 
 header #dropdown {
+	display: inline-block;
 	align-self: center;
 	margin-right: 5%;
 }
-
-header .delete {
-	display: none;
+.alert-circle {
+	color: $secondary-color;
+	position: relative;
+	bottom: 45px;
+	left: 85px;
+	animation: shine linear 500ms infinite;
 }
-
 header table {
 	border: 3px solid black;
 	border-collapse: collapse;

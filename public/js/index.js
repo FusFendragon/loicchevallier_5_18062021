@@ -1,3 +1,19 @@
+// Store Class
+class Store {
+	static getTeddies() {
+		let teddies;
+		if (localStorage.getItem("teddies") === null) {
+			teddies = [];
+		} else {
+			teddies = JSON.parse(localStorage.getItem("teddies"));
+		}
+
+		return teddies;
+	}
+}
+
+// UI Class
+
 class UI {
 	static displayTeddies() {
 		const teddies = Store.getTeddies();
@@ -13,11 +29,12 @@ class UI {
 			<td>${teddy.color}</td>
 			<td>${teddy.price}€</td>
 			<td class="quantity">${teddy.quantity}</td>
-			<td><a class="delete">X</a></td>
 		`;
 		list.appendChild(row);
 	}
 }
+
+document.addEventListener("DOMContentLoaded", UI.displayTeddies);
 
 document.addEventListener("DOMContentLoaded", UI.displayTeddies);
 

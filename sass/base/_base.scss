@@ -21,3 +21,7 @@ body {
 a {
 	@include link-no-style;
 }
+.hidden {
+	display: none;
+	animation: none;
+}
