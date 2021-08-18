@@ -33,14 +33,30 @@ class UI {
 			el.parentElement.parentElement.remove();
 		}
 	}
+
+	static verification() {
+		if (Store.getTeddies().length === 0) {
+			// Hide table and form
+			document.getElementById("table-form").classList.add("hidden");
+			//Show alert
+			document.querySelector(".product-need").classList.remove("hidden");
+		} else {
+			//hide alert
+			document.querySelector(".product-need").classList.add("hidden");
+			//Show Table and form
+			document.getElementById("table-form").classList.remove("hidden");
+		}
+	}
 }
 document.addEventListener("DOMContentLoaded", UI.displayTeddies);
 document.addEventListener("DOMContentLoaded", UI.displayTotalPrice);
+document.addEventListener("DOMContentLoaded", UI.verification);
 
 document.querySelector("#teddy-list").addEventListener("click", (e) => {
 	Store.removeTeddy(e.target.parentElement.parentElement.childNodes[3].textContent, e.target.parentElement.parentElement.childNodes[5].textContent);
 	UI.displayTotalPrice();
 	UI.deleteTeddy(e.target)
+	UI.verification();
 });
 
 // Store Class
@@ -112,9 +128,4 @@ function contactPost(e) {
 		});
 }
 
-if (Store.getTeddies().length === 0) {
-	// Hide table and form
-	document.getElementById("table-form").classList.add("hidden");
-} else {
-	document.querySelector(".product-need").classList.add("hidden");
-}
+

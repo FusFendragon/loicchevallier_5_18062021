@@ -12,3 +12,18 @@
         font-size: 1em;
     }
 }
+
+@keyframes rotate {
+    0% {
+        opacity: 0%;
+        rotate: 0turn;
+    }
+    50% {
+        opacity: 80%;
+        rotate: 1turn;
+    }
+    100% {
+        opacity: 100%;
+        rotate: 1turn;
+    }
+}

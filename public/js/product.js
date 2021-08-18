@@ -40,6 +40,7 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
 			// Add Teddy to Store
 			Store.addTeddy(ted);
 			verificationCart();
+			UI.showAddToCart();
 		});
 	});
 
@@ -74,6 +75,11 @@ class UI {
 		const row = document.querySelectorAll("tr")[index + 1];
 		const element = row.querySelector(".quantity");
 		element.innerHTML = quantity;
+	}
+
+	static showAddToCart() {
+		document.querySelector(".alert-added").classList.remove("hidden");
+		setTimeout(function (){ document.querySelector(".alert-added").classList.add("hidden") }, 1100);
 	}
 }
 document.addEventListener("DOMContentLoaded", UI.displayTeddies);

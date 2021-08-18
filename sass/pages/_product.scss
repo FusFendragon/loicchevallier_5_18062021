@@ -11,6 +11,7 @@
 }
 #teddy-card {
     display: flex;
+    align-items: center;
 }
 #teddy-card h3 {
     font-size: 3em;
@@ -25,8 +26,39 @@
 }
 
 #teddy-custom {
+    display: flex;
+    text-align: center;
     font-size: 1.2em;
 }
 #teddy-custom select {
-    width: 100px;
+    width: 100%;
+}
+#teddy-form {
+    display: flex;
+
+}
+#custom-bloc {
+    width: 200px;
+    align-self: center;
+    margin: 25px;
+}
+#custom-btn {
+    position: relative;
+    background-image: $linear-gradient;
+}
+#custom-btn input {
+    position: relative;
+    height: 100%;
+    background: none;
+    color: white;
+    border: 2px solid $primary-color;
+    z-index: 1;
+}
+#custom-btn i {
+    position: absolute;
+    font-size: 50px;
+    top: 170px;
+    left: 30px;
+    color: white;
+    animation: rotate 2s;
 }
