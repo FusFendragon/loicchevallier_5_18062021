@@ -39,8 +39,8 @@ header #dropdown {
 .alert-circle {
 	color: $secondary-color;
 	position: relative;
-	bottom: 45px;
-	left: 85px;
+	bottom: 40px;
+	left: 80px;
 	animation: shine linear 500ms infinite;
 }
 header table {
@@ -65,8 +65,8 @@ header th {
 	border: 3px solid black;
 }
 
-#dropdown .cart {
-	font-size: 4em;
+.fas.fa-shopping-cart {
+	font-size: 60px;
 }
 
 .dropdown-cart {
@@ -116,4 +116,4 @@ header th {
 	color: darken($color: $primary-color, $amount: 10);
 }
 
-// FOOTER
+

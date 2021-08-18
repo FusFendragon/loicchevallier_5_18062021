@@ -23,7 +23,7 @@
 		</section>
 		<section>
 			<div id="table-form">
-				<table class="table-cart">
+				<table class="table-cart cart">
 					<thead>
 						<tr>
 							<th></th>
@@ -36,31 +36,30 @@
 					</thead>
 					<tbody id="teddy-list"></tbody>
 				</table>
-				<span class="total"></span>
+				<div class="total"></div>
 				<form id="contact-form">
 					<div class="form-element">
 						<label for="firstName">Prénom</label>
-						<input type="text" id="firstName" required />
+						<input type="text" id="firstName" minlength="2" required />
 					</div>
 					<div class="form-element">
 						<label for="lastName">Nom</label>
-						<input type="text" id="lastName" required />
+						<input type="text" id="lastName" minlength="2" required />
 					</div>
 					<div class="form-element">
 						<label for="address">Adresse</label>
-						<input type="text" id="address" required />
+						<input type="text" id="address" minlength="2" required />
 					</div>
 					<div class="form-element">
 						<label for="city">Ville</label>
-						<input type="text" id="city" required />
+						<input type="text" id="city" pattern="[A-Za-z' -]+" minlength="2" required />
 					</div>
 					<div class="form-element">
 						<label for="email">eMail</label>
-						<input type="email" id="email" required />
+						<input type="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
 					</div>
 					<input type="submit" value="Commander" class="order-button" />
 				</form>
-				<a href="cart.html">Voir le Panier</a>
 			</div>
 		</section>
 		<script src="js/cart.js"></script>

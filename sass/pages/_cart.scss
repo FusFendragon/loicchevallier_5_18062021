@@ -1,5 +1,57 @@
 #teddy-cart-image {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
+}
+
+.cart th {
+    padding: 20px;
+}
+
+.cart {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.cart th, td{
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.cart .delete{
+    padding: 10px;
+    background-color: red;
+    color: white;
+}
+
+.total {
+    width: 100%;
+    font-size: 2em;
+    padding: 5px 0px;
+    color: white;
+    background-image: $linear-gradient;
+    text-align: center;
+    border: 5px solid #ddd;
+    text-decoration: underline;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+}
+#contact-form label {
+    width: 70px;
+    text-align: left;
+}
+#contact-form .form-element {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.order-button {
+    font-size: 20px;
+    color: white;
+    padding: 5px;
+    background-image: $linear-gradient;
 }

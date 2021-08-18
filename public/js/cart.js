@@ -27,14 +27,20 @@ class UI {
 		});
 		document.querySelector(".total").innerHTML = `Prix Total: ${totalPrice}€`;
 	}
+
+	static deleteTeddy(el) {
+		if (el.classList.contains("delete")) {
+			el.parentElement.parentElement.remove();
+		}
+	}
 }
 document.addEventListener("DOMContentLoaded", UI.displayTeddies);
 document.addEventListener("DOMContentLoaded", UI.displayTotalPrice);
 
 document.querySelector("#teddy-list").addEventListener("click", (e) => {
-	
 	Store.removeTeddy(e.target.parentElement.parentElement.childNodes[3].textContent, e.target.parentElement.parentElement.childNodes[5].textContent);
-	location.reload();
+	UI.displayTotalPrice();
+	UI.deleteTeddy(e.target)
 });
 
 // Store Class
@@ -102,13 +108,13 @@ function contactPost(e) {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			window.open(`order.html?orderId=${data.orderId}`);
+			window.open(`order.html?orderId=${data.orderId}`, "_self");
 		});
 }
 
 if (Store.getTeddies().length === 0) {
-    // Hide table and form
-	document.getElementById("table-form").classList.add("hidden")
+	// Hide table and form
+	document.getElementById("table-form").classList.add("hidden");
 } else {
-	document.querySelector(".product-need").classList.add("hidden")
+	document.querySelector(".product-need").classList.add("hidden");
 }

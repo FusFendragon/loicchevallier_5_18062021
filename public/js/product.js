@@ -39,6 +39,7 @@ fetch(`http://localhost:3000/api/teddies/${urlId}`)
 
 			// Add Teddy to Store
 			Store.addTeddy(ted);
+			verificationCart();
 		});
 	});
 
