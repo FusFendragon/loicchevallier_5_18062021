@@ -18,7 +18,7 @@ class UI {
                  `;
 		list.appendChild(row);
 	}
-
+	// Give the total price of the cart
 	static displayTotalPrice() {
 		const teddies = Store.getTeddies();
 		let totalPrice = 0;
@@ -28,11 +28,11 @@ class UI {
 		document.querySelector(".total").innerHTML = `Prix Total: ${totalPrice}€`;
 		return totalPrice
 	}
-
+	// Remove Teddy From UI
 	static deleteTeddy(el) {
 			el.parentElement.parentElement.remove();
 	}
-
+	// Verification if the cart is empty or not
 	static verification() {
 		if (Store.getTeddies().length === 0) {
 			// Hide table and form
@@ -72,7 +72,7 @@ class Store {
 
 		return teddies;
 	}
-
+	// Get ids of products on localStorage
 	static getTeddyIds() {
 		const teddies = Store.getTeddies();
 		let productsIds = [];
@@ -83,7 +83,7 @@ class Store {
 		});
 		return productsIds;
 	}
-
+	// Remove teddy From Localstorage
 	static removeTeddy(name, color) {
 		const teddies = Store.getTeddies();
 
