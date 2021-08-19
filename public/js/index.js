@@ -1,5 +1,6 @@
 // Store Class
 class Store {
+	// Get teddies on Localstorage
 	static getTeddies() {
 		let teddies;
 		if (localStorage.getItem("teddies") === null) {
@@ -33,11 +34,10 @@ class UI {
 		list.appendChild(row);
 	}
 }
-
+// Show Teddies on Cart Preview
 document.addEventListener("DOMContentLoaded", UI.displayTeddies);
 
-document.addEventListener("DOMContentLoaded", UI.displayTeddies);
-
+// Show Teddies list from API
 fetch("http://localhost:3000/api/teddies")
 	.then((res) => res.json())
 	.then((teddies) => {
