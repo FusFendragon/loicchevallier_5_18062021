@@ -26,12 +26,11 @@ class UI {
 			totalPrice += teddy.price * teddy.quantity;
 		});
 		document.querySelector(".total").innerHTML = `Prix Total: ${totalPrice}€`;
+		return totalPrice
 	}
 
 	static deleteTeddy(el) {
-		if (el.classList.contains("delete")) {
 			el.parentElement.parentElement.remove();
-		}
 	}
 
 	static verification() {
@@ -53,10 +52,12 @@ document.addEventListener("DOMContentLoaded", UI.displayTotalPrice);
 document.addEventListener("DOMContentLoaded", UI.verification);
 
 document.querySelector("#teddy-list").addEventListener("click", (e) => {
-	Store.removeTeddy(e.target.parentElement.parentElement.childNodes[3].textContent, e.target.parentElement.parentElement.childNodes[5].textContent);
-	UI.displayTotalPrice();
-	UI.deleteTeddy(e.target)
-	UI.verification();
+	if (e.target.classList.contains("delete")) {
+		Store.removeTeddy(e.target.parentElement.parentElement.childNodes[3].textContent, e.target.parentElement.parentElement.childNodes[5].textContent);
+		UI.displayTotalPrice();
+		UI.deleteTeddy(e.target)
+		UI.verification();
+	}
 });
 
 // Store Class
@@ -112,7 +113,6 @@ function contactPost(e) {
 	const contact = { firstName, lastName, address, city, email };
 
 	const products = Store.getTeddyIds();
-	localStorage.clear();
 
 	fetch("http://localhost:3000/api/teddies/order", {
 		method: "POST",
@@ -124,8 +124,8 @@ function contactPost(e) {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			window.open(`order.html?orderId=${data.orderId}`, "_self");
+			window.open(`order.html?orderId=${data.orderId}&price=${UI.displayTotalPrice()}`, "_self");
+			localStorage.clear();
 		});
 }
-
 

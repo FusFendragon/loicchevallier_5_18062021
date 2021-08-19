@@ -7,7 +7,7 @@
 }
 #teddy-sheet {
     display: flex;
-    border: 5px rgba(189, 49, 189, 0.733) inset;
+    border: 5px $primary-color inset;
 }
 #teddy-card {
     display: flex;
@@ -31,7 +31,8 @@
     font-size: 1.2em;
 }
 #teddy-custom select {
-    width: 100%;
+    width: 80%;
+    font-size: 1em;
 }
 #teddy-form {
     display: flex;

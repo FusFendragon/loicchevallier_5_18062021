@@ -9,16 +9,6 @@
     font-size: 2em;
 }
 
-#shop-btn {
-    align-self: center;
-    margin: 20px;
-    padding: 20px;
-    border: 2px solid $primary-color;
-    border-radius: 10px;
-    background-image: $linear-gradient;
-    color: white;
-}
-
 #teddy-cart-image {
     width: 150px;
     height: 150px;
@@ -43,6 +33,7 @@
     padding: 10px;
     background-color: red;
     color: white;
+    margin: 0px 30px;
 }
 
 .total {
